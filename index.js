@@ -1,6 +1,7 @@
 var bunyan = require('bunyan'),
     has = require('lodash.has'),
     set = require('lodash.set'),
+    cloneDeep = require('lodash.cloneDeep'),
     useragent = require('useragent'),
     uuid = require('uuid'),
     util = require('util');
@@ -120,7 +121,7 @@ module.exports.errorLogger = function (opts) {
                 'url': url,
                 'referer': referer,
                 'user-agent': ua,
-                'body': req.body,
+                'body': cloneDeep(req.body),
                 'short-body': undefined,
                 'http-version': httpVersion,
                 'response-time': responseTime,
